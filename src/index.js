@@ -8,9 +8,4 @@ const fileManager = () => {
 fileManager();
 
 // npm run start -- --username=artem
-
-
-
-
-
-
+// cd E:\Games\test\read.txt

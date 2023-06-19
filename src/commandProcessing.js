@@ -9,6 +9,13 @@ export const commandProcessing = async (unprocessedCommand, state) => {
     const command = splitedCommand[0];
     const commandArguments = splitedCommand.slice(1);
 
+    // put all modules in one big map with all methods throw ... destructarization
+    // {
+    //   cd
+    //   ls
+    //   ...
+    // }
+
     switch (command) {
       case 'cd':
         await fsModule.cd(commandArguments, state);
