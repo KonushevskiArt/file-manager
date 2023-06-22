@@ -1,3 +1,5 @@
+import path from 'node:path';
+import { stat } from 'node:fs/promises';
 
 export const colorfulPrint = (color, message) => {
   const reset = "\x1b[0m";
@@ -14,13 +16,21 @@ export const createAbsolutePath = (currentDirPath, pathToFile) => {
 } 
 
 export const checkIsItDir = async (absolutePathToFile) => {
-  const dirStat = await stat(absolutePathToFile) 
-
-  return dirStat.isDirectory();
+  try {
+    const dirStat = await stat(absolutePathToFile) 
+  
+    return dirStat.isDirectory();
+  } catch (error) {
+    return false;
+  }
 }
 
 export const checkIsItFile = async (absolutePathToFile) => {
-  const fileStat = await stat(absolutePathToFile) 
-
-  return  dirStat.isFile();
+  try {
+    const fileStat = await stat(absolutePathToFile) 
+  
+    return  fileStat.isFile();
+  } catch (error) {
+    return false 
+  }
 }
