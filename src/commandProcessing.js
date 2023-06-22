@@ -1,7 +1,9 @@
 import { fsModule } from './modules/fsModule.js';
 import { osModule } from './modules/osModule.js';
+import { hashModule } from './modules/hashModule.js';
 import { ConsoleColors } from './variables.js';
 import { colorfulPrint } from './utils.js';
+import { compressModule } from './modules/compressModule.js';
 
 export const commandProcessing = async (unprocessedCommand, externalStateInterface) => {
   try {
@@ -14,6 +16,8 @@ export const commandProcessing = async (unprocessedCommand, externalStateInterfa
     const uniteModule = { 
       ...fsModule,
       ...osModule, 
+      ...hashModule,
+      ...compressModule,
     };
 
     if (uniteModule[command]) {
