@@ -28,7 +28,8 @@ export const commandProcessing = async (unprocessedCommand, externalStateInterfa
     }
 
   } catch (error) {
-     console.log('Operation failed \n', error);
+    colorfulPrint(ConsoleColors.red, 'Operation failed \n', );
+    console.log(error);
   }
 
 };

@@ -1,27 +1,34 @@
+import os from 'node:os';
 
+import { colorfulPrint } from '../utils.js';
+import { ConsoleColors } from '../variables.js';
 
 export const osModule = {
-  os: (arg) => {
-    switch (arg) {
-      case 'EOL':
-        
+  os: (_, commandArguments) => {
+    const commandStringified = commandArguments.toString().trim();
+    const splitedCommand = commandStringified.split(' ').filter(str => str.startsWith('--'));
+    const command = splitedCommand[0];
+
+    switch (command) {
+      case '--EOL':
+        console.dir('os EOL - ' + os.EOL);
         break;
-      case 'cpus':
-        
+      case '--cpus':
+        console.table(os.cpus())
         break;
-    
+      case '--homedir':
+        colorfulPrint(ConsoleColors.green, os.homedir());
+        break;
+      case '--username':
+        colorfulPrint(ConsoleColors.green, os.userInfo().username);
+        break;
+      case '--architecture':
+        colorfulPrint(ConsoleColors.green, os.arch());
+        break;
       default:
+        colorfulPrint(ConsoleColors.red, 'Invalid input\n');
         break;
     }
   }
-  // Get EOL (default system End-Of-Line) and print it to console
-  // os --EOL
-  // Get host machine CPUs info (overall amount of CPUS plus model and clock rate (in GHz) for each of them) and print it to console
-  // os --cpus
-  // Get home directory and print it to console
-  // os --homedir
-  // Get current system user name (Do not confuse with the username that is set when the application starts) and print it to console
-  // os --username
-  // Get CPU architecture for which Node.js binary has compiled and print it to console
-  // os --architecture
+  
 }

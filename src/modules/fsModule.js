@@ -4,6 +4,8 @@ import path from 'node:path';
 import { createReadStream, createWriteStream } from 'node:fs';
 import { checkIsItDir, checkIsItFile, createAbsolutePath } from '../utils.js';
 import { writeFile } from 'node:fs/promises';
+import { colorfulPrint } from '../utils.js';
+import { ConsoleColors } from '../variables.js';
 
 export const fsModule = {
 
@@ -44,7 +46,8 @@ export const fsModule = {
       const absolutePathToFile = createAbsolutePath(getCurrentDirPath(), fileName);
       await writeFile(absolutePathToFile, '', {flag: 'ax'});
     } catch (error) {
-      console.log('invalid input\n', error)
+      colorfulPrint(ConsoleColors.red, 'Invalid input\n');
+      console.log(error)
     }
   },
 
@@ -61,7 +64,8 @@ export const fsModule = {
         await renameFile(absolutePathToFile, absolutePathToNewFile);
       }
     } catch (error) {
-      console.log('Invalid input\n', error);
+      colorfulPrint(ConsoleColors.red, 'Invalid input\n');
+      console.log(error)
     }
   }, 
 
@@ -85,7 +89,8 @@ export const fsModule = {
     } 
 
     catch (error) {
-      console.log('Invalid input\n', error);
+      colorfulPrint(ConsoleColors.red, 'Invalid input\n');
+      console.log(error)
     }
   },
 
@@ -109,7 +114,8 @@ export const fsModule = {
       }
      
     } catch (error) {
-      console.log('invalid input\n', error)
+      colorfulPrint(ConsoleColors.red, 'Invalid input\n');
+      console.log(error)
     }
   },
 
@@ -121,7 +127,8 @@ export const fsModule = {
       rm(absolutePathToFile);
       
     } catch (error) {
-      console.log('invalid input\n', error)
+      colorfulPrint(ConsoleColors.red, 'Invalid input\n');
+      console.log(error)
     }
   },
 
@@ -153,7 +160,8 @@ export const fsModule = {
       console.table(sortedRes);
       
     } catch (error) {
-      console.log('invalid input\n', error)
+      colorfulPrint(ConsoleColors.red, 'Invalid input\n');
+      console.log(error);
     }
   }
 
